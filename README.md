@@ -1,0 +1,1 @@
+# Minimal working example of server-client Flask API
