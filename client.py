@@ -3,7 +3,7 @@ import requests
 from flask import Flask, request, jsonify
 
 # api-endpoint
-API_ENDPOINT = "http://127.0.0.1:5000"
+API_ENDPOINT = "http://10.1.0.100:5000"
 
 # sending get request and saving the response as response object
 r = requests.get(url = API_ENDPOINT)
