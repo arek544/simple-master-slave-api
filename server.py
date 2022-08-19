@@ -17,4 +17,4 @@ def query_records():
     print(request.form['name'])
     return jsonify({"success": True})
 
-app.run()
+app.run(host="0.0.0.0", port=5000)
