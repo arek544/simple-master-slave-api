@@ -11,11 +11,11 @@ COPY . .
 
 RUN pip install -r requirements.txt 
 
-FROM base as one
+FROM base as server
 
 CMD ["python", "/work/server.py"]
 
-FROM base as two
+FROM base as client
 
 # RUN ls
 # CMD ["python", "/work/client.py"]

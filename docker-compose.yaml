@@ -2,23 +2,23 @@ version: "3.9"
 
 services:
   service-one:
-    container_name: container_one
-    image: image_one
+    container_name: server
+    image: simple-flask-api-server
     build:
       context: .
       dockerfile: Dockerfile
-      target: one
+      target: server
     stdin_open: true
     tty: true
     ports:
       - 5000:5000
   service-two:
-    container_name: container_two
-    image: image_two
+    container_name: client
+    image: simple-flask-api-client
     build:
       context: .
       dockerfile: Dockerfile
-      target: two
+      target: client
     stdin_open: true
     tty: true
     network_mode: host
