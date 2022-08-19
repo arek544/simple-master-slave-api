@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  service-one:
+  server:
     container_name: server
     image: simple-flask-api-server
     build:
@@ -13,7 +13,7 @@ services:
     networks:
       my-network:
         ipv4_address: 10.1.0.100
-  service-two:
+  client:
     container_name: client
     image: simple-flask-api-client
     build:
