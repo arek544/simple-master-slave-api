@@ -10,8 +10,9 @@ services:
       target: server
     stdin_open: true
     tty: true
-    ports:
-      - 5000:5000
+    networks:
+      my-network:
+        ipv4_address: 10.1.0.100
   service-two:
     container_name: client
     image: simple-flask-api-client
@@ -21,4 +22,13 @@ services:
       target: client
     stdin_open: true
     tty: true
-    network_mode: host
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/24
