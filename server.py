@@ -1,20 +1,39 @@
-import json
-from flask import Flask, request, jsonify
+from flask import Flask, Response, jsonify
+from threading import Thread
+from time import sleep
 
 app = Flask(__name__)
 
-# responding to get request
-@app.route('/', methods=['GET'])
-def index():
-    return json.dumps({
-        'name': 'Peter',
-        'surname': 'Parker'
-    })
+stop_run = False
 
-# responding to post request
-@app.route('/', methods=['POST'])
-def query_records():
-    print(request.form['name'])
+
+def my_function():
+    global stop_run
+    while not stop_run:
+        sleep(1)
+        print("running...")
+
+
+def manual_run():
+    t = Thread(target=my_function)
+    t.start()
+    return "Processing"
+
+
+@app.route("/stop", methods=['GET'])
+def set_stop_run():
+    global stop_run
+    stop_run = True
     return jsonify({"success": True})
 
-app.run(host="10.1.0.100", port=5000)
+
+@app.route("/run", methods=['GET'])
+def run_process():
+    global stop_run
+    stop_run = False
+    manual_run()
+    return jsonify({"success": True})
+
+
+if __name__ == "__main__":
+    app.run(host="10.1.0.100", port=5000)
