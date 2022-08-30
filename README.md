@@ -1,3 +1,1 @@
-# Simple Flask API
-
-Minimal working example of Flask server-client. 
+# Simple master-slave API
