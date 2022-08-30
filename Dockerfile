@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 
 FROM base as server
 
-CMD ["python", "/work/server.py"]
+# CMD ["python", "/work/server.py"]
 
 FROM base as client
 
